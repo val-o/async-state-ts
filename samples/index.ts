@@ -15,3 +15,6 @@ const c = pipe(
   })
 );
 const d = pipe(b, AsyncState.toEither);
+
+const successState = AsyncState.success(3);
+pipe(successState, AsyncState.match({ Success: _ => 3 }));

@@ -27,9 +27,9 @@ export interface ErrorState<E> {
   error: E;
 }
 
-export type AsyncState<E, A> = LoadingState | SuccessState<A> | ErrorState<E>;
-
 export type ReadyState<E, A> = SuccessState<A> | ErrorState<E>;
+
+export type AsyncState<E, A> = LoadingState | ReadyState<E, A>;
 
 type Tag = AsyncState<any, any>['type'];
 
@@ -65,21 +65,32 @@ export const isReady = <E, A>(as: AsyncState<E, A>): as is ReadyState<E, A> =>
 
 //#endregion
 
-type Matcher<E, A, B> = {
+type Matchers<E, A, B> = {
   [LOADING_TAG]: () => B;
   [SUCCESS_TAG]: (result: A) => B;
   [ERROR_TAG]: (error: E) => B;
 };
-export const match = <E, A, B>(matcher: Matcher<E, A, B>) => (
-  state: AsyncState<E, A>
-): B => {
+
+type BuildMatcher<E, A, B, AS extends AsyncState<E, A>> = {
+  [key in AS['type']]: Matchers<E, A, B>[key];
+};
+
+export const match = <E, A, B, AS extends AsyncState<E, A>>(
+  matcher: BuildMatcher<E, A, B, AS>
+) => (state: AS): B => {
+  type TMatchers = Matchers<E, A, B>;
+
   switch (state.type) {
-    case 'Error':
-      return matcher[state.type](state.error);
-    case 'Loading':
-      return matcher[state.type]();
-    case 'Success':
-      return matcher[state.type](state.value);
+    case ERROR_TAG:
+      return ((matcher as any)[state.type] as TMatchers[typeof state.type])(
+        (state as ErrorState<E>).error
+      );
+    case LOADING_TAG:
+      return ((matcher as any)[state.type] as TMatchers[typeof state.type])();
+    case SUCCESS_TAG:
+      return ((matcher as any)[state.type] as TMatchers[typeof state.type])(
+        (state as SuccessState<A>).value
+      );
   }
 };
 
