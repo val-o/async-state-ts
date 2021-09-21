@@ -1,0 +1,34 @@
+{
+  "name": "async-state-ts-react-hooks",
+  "author": "Valikhan Akhmedov",
+  "version": "0.1.1",
+  "license": "MIT",
+  "main": "dist/lib/index.js",
+  "typings": "dist/lib/index.d.ts",
+  "modules": "dist/es6/index.js",
+  "files": [
+    "dist"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json",
+    "tscheck": "tsc --watch --noEmit"
+  },
+  "peerDependencies": {
+    "fp-ts": ">=2.10",
+    "async-state-ts": ">=0.1.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "devDependencies": {
+    "fp-ts": "^2.10.4"
+  },
+  "dependencies": {
+    "@types/react": "^17.0.14"
+  }
+}

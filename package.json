@@ -1,57 +1,25 @@
 {
-  "version": "0.1.0",
-  "license": "MIT",
-  "main": "dist/index.js",
-  "typings": "dist/index.d.ts",
-  "files": [
-    "dist",
-    "src"
-  ],
-  "engines": {
-    "node": ">=10"
-  },
-  "scripts": {
-    "start": "tsdx watch",
-    "build": "tsdx build",
-    "test": "tsdx test",
-    "lint": "tsdx lint",
-    "prepare": "tsdx build",
-    "size": "size-limit",
-    "analyze": "size-limit --why",
-    "tscheck": "tsc --watch --noEmit"
-  },
-  "peerDependencies": {},
-  "husky": {
-    "hooks": {
-      "pre-commit": "tsdx lint"
-    }
-  },
-  "prettier": {
-    "printWidth": 80,
-    "semi": true,
-    "singleQuote": true,
-    "trailingComma": "es5"
-  },
   "name": "async-state-ts",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@gitlab.btsd.kz:pay/wallet-components/web/admin-libs.git",
   "author": "Valikhan Akhmedov",
-  "module": "dist/async-state-ts.esm.js",
-  "size-limit": [
-    {
-      "path": "dist/async-state-ts.cjs.production.min.js",
-      "limit": "10 KB"
-    },
-    {
-      "path": "dist/async-state-ts.esm.js",
-      "limit": "10 KB"
-    }
+  "license": "MIT",
+  "private": true,
+  "workspaces": [
+    "packages/*"
   ],
   "devDependencies": {
-    "@size-limit/preset-small-lib": "^4.10.2",
-    "fp-ts": "^2.10.4",
-    "husky": "^6.0.0",
-    "size-limit": "^4.10.2",
-    "tsdx": "^0.14.1",
-    "tslib": "^2.2.0",
-    "typescript": "^4.2.4"
-  }
+    "typescript": "^4.3.5"
+  },
+  "prettier": {
+    "$schema": "http://json.schemastore.org/prettierrc",
+    "printWidth": 100,
+    "trailingComma": "es5",
+    "tabWidth": 2,
+    "semi": true,
+    "singleQuote": true,
+    "jsxBracketSameLine": false
+  },
+  "dependencies": {}
 }
