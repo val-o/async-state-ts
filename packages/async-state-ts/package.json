@@ -14,7 +14,7 @@
     "node": ">=10"
   },
   "scripts": {
-    "build": "rm -rf ./dist && tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json",
+    "build": "rm -rf ./dist && tsc -p ./tsconfig.build.json && tsc -p ./tsconfig.build-es6.json && ts-node scripts/build",
     "tscheck": "tsc --watch --noEmit"
   },
   "peerDependencies": {
@@ -26,6 +26,10 @@
     }
   },
   "devDependencies": {
-    "fp-ts": "^2.11.2"
+    "@types/glob": "^7.2.0",
+    "@types/node": "^12.6.8",
+    "fp-ts": "^2.11.2",
+    "ts-node": "^8.0.2",
+    "glob": "^7.2.0"
   }
 }
