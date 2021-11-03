@@ -3,8 +3,8 @@ import * as TE from 'fp-ts/TaskEither';
 import { pipe } from 'fp-ts/lib/function';
 import * as T from 'fp-ts/Task';
 import * as E from 'fp-ts/Either';
-import * as AsyncState from 'async-state-ts/dist/es6/AsyncState';
-import * as AsyncStateN from 'async-state-ts/dist/es6/AsyncStateN';
+import * as AsyncState from 'async-state-ts/AsyncState';
+import * as AsyncStateN from 'async-state-ts/AsyncStateN';
 
 const noop = () => {};
 

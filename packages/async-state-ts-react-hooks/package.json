@@ -17,8 +17,7 @@
     "tscheck": "tsc --watch --noEmit"
   },
   "peerDependencies": {
-    "fp-ts": ">=2.10",
-    "async-state-ts": ">=0.1.1"
+    "fp-ts": ">=2.10"
   },
   "husky": {
     "hooks": {
@@ -29,6 +28,7 @@
     "fp-ts": "^2.10.4"
   },
   "dependencies": {
-    "@types/react": "^17.0.14"
+    "@types/react": "^17.0.14",
+    "async-state-ts": "^0.1.4"
   }
 }
