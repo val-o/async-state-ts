@@ -1,7 +1,7 @@
 {
   "name": "async-state-ts-react-hooks",
   "author": "Valikhan Akhmedov",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "license": "MIT",
   "main": "dist/lib/index.js",
   "typings": "dist/lib/index.d.ts",
