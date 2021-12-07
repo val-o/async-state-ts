@@ -27,15 +27,23 @@ export const useTaskEither = <TParams extends any[], E, A>(
   const [state, setState] = useState<AsyncStateN.T<E, A>>(
     initialState ?? AsyncStateN.notInitiated()
   );
+  const stateRef = useRef(state);
+  stateRef.current = state;
+
+  const invocationId = useRef(0);
   const lastArgsRef = useRef<TParams | undefined>(undefined);
+
   const execute = useRef((...args: TParams) => {
+    invocationId.current++;
+    const id = invocationId.current;
     setState(AsyncStateN.loading);
     lastArgsRef.current = args;
     return pipe(
       func(...args),
-      T.chain((res) => {
-        setState(AsyncStateN.fromEither(res));
-        return T.of(res);
+      T.chainFirstIOK((res) => () => {
+        if (invocationId.current === id && !AsyncStateN.isNotInitiated(stateRef.current)) {
+          setState(AsyncStateN.fromEither(res));
+        }
       })
     )();
   }).current;
